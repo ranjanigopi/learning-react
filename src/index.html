@@ -16,6 +16,7 @@
 
         <script>
             const input = document.getElementById('item');
+
             input.onkeypress = handleEnter;
 
             function handleEnter(event) {
@@ -26,9 +27,11 @@
 
             function addNewItem() {
                 const list = document.getElementById('list');
-                const item = document.getElementById('item').value;
+                const item = document.getElementById('item');
 
-                list.innerHTML += '<li>' + item + '</li>';
+                list.innerHTML += '<li>' + item.value + '</li>';
+                item.value = null;
+                item.focus();
             }
         </script>
     </body>
