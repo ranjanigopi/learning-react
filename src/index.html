@@ -15,11 +15,20 @@
         <ul id="list"></ul>
 
         <script>
+            const input = document.getElementById('item');
+            input.onkeypress = handleEnter;
+
+            function handleEnter(event) {
+                if (event.key === 'Enter') {
+                    addNewItem();
+                }
+            }
+
             function addNewItem() {
                 const list = document.getElementById('list');
                 const item = document.getElementById('item').value;
 
-                list.innerHTML += "<li>" + item + "</li>";
+                list.innerHTML += '<li>' + item + '</li>';
             }
         </script>
     </body>
