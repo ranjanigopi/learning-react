@@ -28,7 +28,7 @@
             function addNewItem() {
                 const list = document.getElementById('list');
 
-                list.innerHTML += '<li>' + input.value + '</li>';
+                list.innerHTML += '<li>' + '<input type="checkbox">' + input.value + '</li>';
                 input.value = null;
                 input.focus();
             }
