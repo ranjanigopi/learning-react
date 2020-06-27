@@ -27,11 +27,10 @@
 
             function addNewItem() {
                 const list = document.getElementById('list');
-                const item = document.getElementById('item');
 
-                list.innerHTML += '<li>' + item.value + '</li>';
-                item.value = null;
-                item.focus();
+                list.innerHTML += '<li>' + input.value + '</li>';
+                input.value = null;
+                input.focus();
             }
         </script>
     </body>
