@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>To Do!</title>
+    </head>
+    <body>
+        <label>
+            Enter item: <input type="text" id="item">
+        </label>
+        <button onclick="addNewItem()">Add Item</button>
+
+        <ul id="list"></ul>
+
+        <script>
+            function addNewItem() {
+                const list = document.getElementById('list');
+                const item = document.getElementById('item').value;
+
+                list.innerHTML += "<li>" + item + "</li>";
+            }
+        </script>
+    </body>
+</html>
