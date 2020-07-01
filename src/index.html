@@ -11,13 +11,14 @@
             Enter item: <input type="text" id="item">
         </label>
         <button onclick="addNewItem()">Add Item</button>
+        <button onclick="deleteDoneTasks()">Delete Completed</button>
 
         <ul id="list"></ul>
 
         <script>
             const input = document.getElementById('item');
             const list = document.getElementById('list');
-            const items = [];
+            let items = [];
 
             function createTodoItem(task) {
                 return {
@@ -66,6 +67,11 @@
 
                 input.value = null;
                 input.focus();
+            }
+
+            function deleteDoneTasks() {
+                items = items.filter(item => !item.done);
+                renderList();
             }
         </script>
     </body>
