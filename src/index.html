@@ -12,6 +12,18 @@
         </label>
         <button onclick="addNewItem()">Add Item</button>
         <button onclick="deleteDoneTasks()">Delete Completed</button>
+        <fieldset>
+            <legend>Show:</legend>
+            <label>
+                <input type="radio" checked name="task-status" onchange="filterItems('all')">All tasks
+            </label>
+            <label>
+                <input type="radio" name="task-status" onchange="filterItems('active')">Active tasks
+            </label>
+            <label>
+                <input type="radio" name="task-status" onchange="filterItems('completed')">Completed tasks
+            </label>
+        </fieldset>
 
         <ul id="list"></ul>
 
@@ -32,13 +44,13 @@
             function updateItem(index) {
                 items[index].done = !items[index].done;
 
-                renderList();
+                renderList(items);
             }
 
             function removeItem(index) {
                 items.splice(index, 1);
 
-                renderList();
+                renderList(items);
             }
 
             function handleEnter(event) {
@@ -47,11 +59,11 @@
                 }
             }
 
-            function renderList() {
+            function renderList(itemsToRender) {
                 list.innerHTML = '';
 
-                for (let i = 0; i < items.length; i += 1) {
-                    const item = items[i];
+                for (let i = 0; i < itemsToRender.length; i += 1) {
+                    const item = itemsToRender[i];
                     list.innerHTML += '<li>' +
                         '<input type="checkbox" ' + (item.done ? 'checked' : '') + ' onchange="updateItem(' + i + ')">' + item.task +
                         '<button onclick="removeItem(' + i + ')">Delete</button>' +
@@ -63,7 +75,7 @@
                 const item = createTodoItem(input.value);
 
                 items.push(item);
-                renderList();
+                renderList(items);
 
                 input.value = null;
                 input.focus();
@@ -71,7 +83,21 @@
 
             function deleteDoneTasks() {
                 items = items.filter(item => !item.done);
-                renderList();
+                renderList(items);
+            }
+
+            function filterItems(listType) {
+                let allTask = items;
+                let activeTask = items.filter(item => !item.done);
+                let completedTask = items.filter(item => item.done);
+
+                if (listType === 'all') {
+                    renderList(allTask);
+                } else if (listType === 'active') {
+                    renderList(activeTask);
+                } else if (listType === 'completed') {
+                    renderList(completedTask);
+                }
             }
         </script>
     </body>
